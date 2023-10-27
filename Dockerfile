@@ -67,7 +67,7 @@ EXPOSE 4670 9394 9360
 ENV PYTHONPATH=/data/projects/fate/fate:/data/projects/fate/fate_flow/python:/data/projects/fate/fate_client/python:/data/projects/fate/eggroll/python
 ENV EGGROLL_HOME=/data/projects/fate/eggroll/
 
-RUN sed -i "s/python-rocksdb==0.7.0/# python-rocksdb==0.7.0/g" requirements.txt
+RUN sed -i "s/python-rocksdb==0.7.0/# python-rocksdb==0.7.0/g" requirements.txt && \
     python3 -m pip install --upgrade pip && python3 -m pip install -r requirements.txt
 
 ENV TINI_VERSION v0.18.0
