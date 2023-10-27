@@ -59,15 +59,18 @@ WORKDIR /data/projects/fate/eggroll
 
 # COPY code
 COPY --from=builder /data/projects/fate/eggroll/eggroll/ /data/projects/fate/eggroll/
+COPY --from=builder /data/projects/fate/eggroll/requirements.txt /data/projects/fate/eggroll/
 
 # set environment variables
-ENV PYTHONPATH=/data/projects/fate2.0/python:/data/projects/fate2.0/fate_flow/python:/data/projects/fate2.0/fate_client/python
+ENV PYTHONPATH=/data/projects/fate/python:/data/projects/fate/fate_flow/python:/data/projects/fate/fate_client/python
 
 # expose ports
 EXPOSE 4670 9394 9360
 
 ENV PYTHONPATH=/data/projects/fate/fate/python:/data/projects/fate/eggroll/python:/data/projects/fate/fateflow/python
 ENV EGGROLL_HOME=/data/projects/fate/eggroll/
+
+RUN pip install -r requirements.txt
 
 ENV TINI_VERSION v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
